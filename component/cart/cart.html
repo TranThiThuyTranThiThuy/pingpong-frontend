@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - TBall Shop 🏓</title>
+    <link rel="stylesheet" href="../assets/css/cart.css">
+</head>
+<body>
+    <div class="cart-container">
+        <h2>🛒 Giỏ Hàng Của Bạn</h2>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Các sản phẩm trong giỏ hàng sẽ được thêm vào đây bằng JS -->
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <h3>Tổng cộng: <span id="total-price">0₫</span></h3>
+            <button id="checkout-btn">Thanh Toán</button>
+        </div>
+    </div>
+
+    <script src="../../assets/js/cart.js"></script>
+</body>
+</html>
