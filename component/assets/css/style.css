@@ -80,7 +80,14 @@ nav ul li a {
 nav ul li a:hover {
     color: #ff4500;
 }
+.user-info {
+    display: flex;
+    align-items: center;
+}
 
+.user-info span {
+    margin-right: 10px;
+}
 /* Sidebar */
 aside {
     width: 250px;
@@ -89,6 +96,36 @@ aside {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 12px; /* Bo góc */
     margin-left: 50px;
+}
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.user-menu {
+    position: absolute;
+    top: 60px; /* Điều chỉnh vị trí theo header của bạn */
+    right: 10px; /* Điều chỉnh vị trí theo header của bạn */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-menu button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 aside h2 {
     font-size: 18px;

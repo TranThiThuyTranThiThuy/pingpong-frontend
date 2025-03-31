@@ -62,11 +62,16 @@
     margin-bottom: 20px;
     text-transform: uppercase;
 }
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
 
 /* Container chứa sản phẩm */
 .product-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 3 cột sản phẩm */
+    grid-template-columns: repeat(4, 1fr); /* Mặc định 4 cột sản phẩm */
     gap: 20px;
     padding: 10px;
 }
@@ -126,7 +131,7 @@
 /* Responsive */
 @media (max-width: 900px) {
     .product-container {
-        grid-template-columns: repeat(2, 1fr); /* Hiển thị 2 sản phẩm trên hàng ngang */
+        grid-template-columns: repeat(2, 1fr); /* Hiển thị 2 sản phẩm mỗi hàng */
     }
 }
 

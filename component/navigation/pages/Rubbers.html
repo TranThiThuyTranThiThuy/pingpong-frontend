@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mặt vợt - TBall Shop 🏓</title>
+    <title>TBall Shop 🏓</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/nav.css">
-    <link rel="stylesheet" href="../../assets/css/rubbers.css"> <!-- CSS riêng cho mặt vợt -->
+    <link rel="stylesheet" href="../../assets/css/product.css">
+    <link rel="stylesheet" href="../../assets/css/rubbers.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -30,59 +30,75 @@
     <nav>
         <ul>
             <li><a href="./index.html">Trang chủ</a></li>
-            <li><a href="./blades.html">Cốt vợt</a></li>
-            <li><a href="./rubbers.html">Mặt vợt</a></li>
+            <li><a href="./Blades.html">Cốt vợt</a></li>
+            <li><a href="./Rubbers.html">Mặt vợt</a></li>
             <li><a href="./Accessories.html">Phụ kiện bóng bàn</a></li>
             <li><a href="#">Giới thiệu</a></li>
             <li><a href="#">Liên hệ</a></li>
         </ul>
     </nav>
-
-    <!-- Layout chính -->
-    <div class="rubber-container">
-        <!-- Sidebar danh mục mặt vợt -->
-        <aside class="rubber-sidebar">
-            <h3>Danh mục mặt vợt</h3>
+    
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="blade-sidebar">
+            <h2>Danh mục mặt vợt</h2>
             <ul>
-                <li><a href="#">Butterfly</a></li>
-                <li><a href="#">DHS</a></li>
-                <li><a href="#">Stiga</a></li>
-                <li><a href="#">Donic</a></li>
-                <li><a href="#">Yasaka</a></li>
-                <li><a href="#">Nittaku</a></li>
-                <li><a href="#">Andro</a></li>
+                <li><a href="#" data-category="Tất cả">🏓 Tất cả</a></li>
+                <li><a href="#" data-category="Butterfly">🦋 Butterfly</a></li>
+                <li><a href="#" data-category="DHS">🔥 DHS</a></li>
+                <li><a href="#" data-category="Stiga">⚡ Stiga</a></li>
+                <li><a href="#" data-category="Yasaka">🎯 Yasaka</a></li>
+                <li><a href="#" data-category="Donic">🚀 Donic</a></li>
+                <li><a href="#" data-category="Yasaka">🎖️ Yasaka</a></li>
+                <li><a href="#" data-category="Nitaku">🪩 Nittaku</a></li>
+                <li><a href="#" data-category="Andro">🏓 Andro</a></li>
             </ul>
-        </aside>
-
-        <!-- Danh sách sản phẩm -->
-        <main class="rubber-main">
-            <div class="product-container">
-                <div class="product-card">
-                    <img src="../../assets/imgs/rubber1.png" alt="Butterfly Tenergy 05">
-                    <h3>Butterfly Tenergy 05</h3>
-                    <p class="price">1.200.000 VND</p>
-                    <button>Mua ngay</button>
-                </div>
-                <div class="product-card">
-                    <img src="../../assets/imgs/rubber2.png" alt="DHS Hurricane 3">
-                    <h3>DHS Hurricane 3</h3>
-                    <p class="price">950.000 VND</p>
-                    <button>Mua ngay</button>
-                </div>
-                <div class="product-card">
-                    <img src="../../assets/imgs/rubber3.png" alt="Yasaka Rakza 7">
-                    <h3>Yasaka Rakza 7</h3>
-                    <p class="price">1.100.000 VND</p>
-                    <button>Mua ngay</button>
-                </div>
-                <div class="product-card">
-                    <img src="../../assets/imgs/rubber4.png" alt="Nittaku Fastarc G1">
-                    <h3>Nittaku Fastarc G1</h3>
-                    <p class="price">1.150.000 VND</p>
-                    <button>Mua ngay</button>
-                </div>
+        </aside>        
+        
+        <!-- Main Content -->
+        <main>
+           
+            <div class="product-grid" id="product-list">
+                <!-- Dữ liệu sản phẩm sẽ được render ở đây -->
             </div>
         </main>
     </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2>CONTACT</h2>
+        <p class="subheading">Fan? Drop a note!</p>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> Tân Bình, Hồ Chí Minh</p>
+                <p><i class="fas fa-phone"></i> Phone: 0355984425</p>
+                <p><i class="fas fa-envelope"></i> Email: Tballmail@mail.com</p>
+            </div>
+            <form class="contact-form">
+                <div class="input-group">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <textarea placeholder="Message" required></textarea>
+                <button type="submit">SEND</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-comments"></i></a>
+        </div>
+        <div class="chatbox">Chatbox</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/index.js"></script>
+    <script src="../../assets/js/rubbers.js"></script>
 </body>
 </html>

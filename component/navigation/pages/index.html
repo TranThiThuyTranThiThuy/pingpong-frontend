@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TBall Shop 🏓</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/product.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="logo">
             <img src="../../assets/imgs/logo.png" alt="Logo" style="height: 120px;">
@@ -18,13 +18,17 @@
             <input type="text" placeholder="Tìm kiếm...">
             <button>Tìm 🔎</button>
         </div>
-        <div class="user-actions">
-            <a href="../../login/login.html">Đăng nhập</a> | <a href="../../register/register.html">Đăng ký</a>
-            <a href="#" class="cart">🛒 Giỏ hàng</a>
+        <div class="user-actions" id="guest-actions">
+            <a href="../../login/login.html" id="login-link">Đăng nhập</a> | <a href="../../register/register.html">Đăng ký</a>
+            <i class="fas fa-user user-icon" id="user-icon" style="display: none;"></i>
+            <div class="user-menu" id="user-menu" style="display: none;">
+                <span id="full-name"></span>
+                <button id="logout-btn">Đăng xuất</button>
+            </div>
+            <a href="../../cart/cart.html" class="cart">🛒 Giỏ hàng</a>
         </div>
     </header>
-    
-    <!-- Navigation -->
+
     <nav>
         <ul>
             <li><a href="./index.html">Trang chủ</a></li>
@@ -35,9 +39,8 @@
             <li><a href="#">Liên hệ</a></li>
         </ul>
     </nav>
-    
+
     <div class="container">
-        <!-- Sidebar -->
         <aside>
             <h2>Danh mục sản phẩm</h2>
             <ul>
@@ -45,14 +48,13 @@
                 <li><a href="./Rubbers.html">📚 Mặt vợt</a></li>
                 <li><a href="#">⭐ Bộ vợt bán chạy</a></li>
                 <li><a href="./Accessories.html">🔧 Phụ kiện bóng bàn</a></li>
-                <li><a href="#">📊  Bàn bóng bàn</a></li>
+                <li><a href="#">📊  Bàn bóng bàn</a></li>
                 <li><a href="#">🏬 Hàng nội địa Nhật</a></li>
                 <li><a href="#">🚚 Đồ thể thao xách tay Nhật</a></li>
                 <li><a href="#">🏷️ Chương trình khuyến mãi</a></li>
             </ul>
-        </aside>        
-        
-        <!-- Main Content -->
+        </aside>
+
         <main>
             <div class="slider-container">
                 <div class="slider">
@@ -66,83 +68,25 @@
         </main>
     </div>
 
-    <!-- Danh mục sản phẩm bán chạy -->
     <section class="featured-products">
         <h2>Sản phẩm bán chạy</h2>
-        
+
         <div class="categories">
             <input type="radio" id="bo-vot" name="category" class="category-input" checked>
             <label for="bo-vot" class="category-btn">⭐ Bộ vợt bán chạy</label>
-        
+
             <input type="radio" id="cot-vot" name="category" class="category-input">
             <label for="cot-vot" class="category-btn">🏓 Cốt vợt bán chạy</label>
-        
+
             <input type="radio" id="mat-vot" name="category" class="category-input">
             <label for="mat-vot" class="category-btn">📚 Mặt vợt bán chạy</label>
         </div>
-        
+
         <div class="product-grid" id="product-list">
-            <!-- Dữ liệu sản phẩm sẽ được render ở đây -->
+
         </div>
     </section>
-    
-    <script>
-        // Mapping danh mục từ tên sang ID
-        const categoryMap = {
-            "bo-vot": 1,
-            "cot-vot": 2,
-            "mat-vot": 3
-        };
-    
-        // Hàm gọi API lấy sản phẩm theo danh mục
-        async function fetchProducts(categoryKey = "bo-vot") {
-            try {
-                const categoryId = categoryMap[categoryKey];
-                if (!categoryId) throw new Error("Danh mục không hợp lệ!");
-    
-                console.log(`🔄 Đang tải sản phẩm cho danh mục: ${categoryKey} (ID: ${categoryId})`);
-    
-                const response = await fetch(`http://localhost:3000/api/products?category=${categoryId}`);
-                if (!response.ok) {
-                    throw new Error(`Lỗi API: ${response.status} ${response.statusText}`);
-                }
-    
-                const products = await response.json();
-                console.log("📦 Dữ liệu sản phẩm nhận được:", products);
-    
-                const productList = document.getElementById("product-list");
-                productList.innerHTML = products.length === 0 
-                    ? "<p>Không có sản phẩm nào.</p>" 
-                    : products.map(product => `
-                        <div class="product-box">
-                            <img src="${product.image_url}" alt="${product.product_name}">
-                            <div class="product-info">
-                                <h3>${product.product_name}</h3>
-                                <p class="price">${product.price.toLocaleString()}đ</p>
-                                <button class="add-to-cart">Thêm vào giỏ hàng</button>
-                            </div>
-                        </div>
-                    `).join('');
-            } catch (error) {
-                console.error("❌ Lỗi khi lấy sản phẩm:", error);
-                document.getElementById("product-list").innerHTML = `<p>${error.message}</p>`;
-            }
-        }
-    
-        // Gán sự kiện change cho các radio button
-        document.querySelectorAll(".category-input").forEach(input => {
-            input.addEventListener("change", function() {
-                const categoryKey = this.id;
-                fetchProducts(categoryKey);
-            });
-        });
-    
-        // Mặc định tải sản phẩm "bộ vợt" khi trang web load
-        window.onload = () => fetchProducts("bo-vot");
-    </script>
-    
 
-    <!-- Contact Section -->
     <section class="contact-section">
         <h2>CONTACT</h2>
         <p class="subheading">Fan? Drop a note!</p>
@@ -164,7 +108,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="social-icons">
             <a href="#"><i class="fab fa-facebook"></i></a>
@@ -174,6 +117,8 @@
         </div>
         <div class="chatbox">Chatbox</div>
     </footer>
-
+   
+    <script src="../../assets/js/sellingproduct.js"></script>
+    <script src="../../assets/js/index.js"></script>
 </body>
 </html>

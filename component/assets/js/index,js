@@ -1,0 +1,57 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    const fullNameSpan = document.getElementById('full-name');
+    const logoutBtn = document.getElementById('logout-btn');
+    const userIcon = document.getElementById('user-icon');
+    const userMenu = document.getElementById('user-menu');
+    const loginLink = document.getElementById('login-link');
+    const guestActionsDiv = document.getElementById('guest-actions');
+
+    if (token) {
+        // Giải mã token để lấy userId
+        const decodedToken = JSON.parse(atob(token.split('.')[1]));
+        const userId = decodedToken.userId;
+
+        // Gửi yêu cầu đến /api/user/:userId
+        fetch(`/api/user/${userId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Token không hợp lệ hoặc hết hạn');
+            }
+            return response.json();
+        })
+        .then(user => {
+            loginLink.style.display = 'none';
+            userIcon.style.display = 'inline-block';
+            fullNameSpan.textContent = `Xin chào, ${user.full_name}!`;
+        })
+        .catch(error => {
+            console.error('Lỗi lấy thông tin người dùng:', error);
+            localStorage.removeItem('token');
+            guestActionsDiv.style.display = 'block';
+            userIcon.style.display = 'none';
+        });
+
+        // Hiển thị menu khi hover
+        userIcon.addEventListener('mouseover', () => {
+            userMenu.style.display = 'block';
+        });
+
+        // Ẩn menu khi rời khỏi
+        userIcon.addEventListener('mouseout', () => {
+            userMenu.style.display = 'none';
+        });
+    } else {
+        guestActionsDiv.style.display = 'block';
+        userIcon.style.display = 'none';
+    }
+
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('token');
+        window.location.reload();
+    });
+});

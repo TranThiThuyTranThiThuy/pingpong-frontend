@@ -9,8 +9,8 @@
 <body>
     <div class="auth-container">
         <h2>Đăng Ký</h2>
-        <form id="registerForm">
-            <input type="text" id="username" placeholder="Họ và Tên" required>
+        <form id="registerForm" method="POST" action="/auth/register">
+            <input type="text" id="full_name" name="fullName" placeholder="Họ và Tên" required>
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Mật khẩu" required>
             <input type="password" id="confirmPassword" placeholder="Xác nhận mật khẩu" required>
@@ -18,5 +18,7 @@
         </form>
         <p>Đã có tài khoản? <a href="../login/login.html">Đăng nhập ngay</a></p>
     </div>
+
+    <script src="../assets/js/register.js"></script>
 </body>
 </html>

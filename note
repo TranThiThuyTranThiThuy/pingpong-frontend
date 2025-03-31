@@ -1,0 +1,6 @@
+npm install
+npm install dotenv
+npm install multer(xử lý việc tải ảnh lên server.)
+npm install express body-parser mysql bcryptjs jsonwebtoken
+npm start
+thêm sql
